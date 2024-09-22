@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
 
-const StyledBox = styled('div')(({ theme }) => ({
+const StyledBox =Box/* styled('div')(({ theme }) => ({
   alignSelf: 'center',
   width: '100%',
   height: 400,
@@ -34,7 +34,7 @@ const StyledBox = styled('div')(({ theme }) => ({
     outlineColor: 'hsla(220, 20%, 42%, 0.1)',
     borderColor: theme.palette.grey[700],
   }),
-}));
+}));*/
 
 export default function Hero() {
   return (
