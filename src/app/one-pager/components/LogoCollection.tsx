@@ -1,7 +1,8 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import { Grid2 } from "@mui/material";
 import { useTheme } from "@mui/system";
+import Image from "next/image";
 
 const whiteLogos = [
   "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628e8573c43893fe0ace_Sydney-white.svg",
@@ -42,17 +43,17 @@ export default function LogoCollection() {
       >
         Trusted by the best companies
       </Typography>
-      <Grid container sx={{ justifyContent: "center", mt: 0.5, opacity: 0.6 }}>
+      <Grid2 container sx={{ justifyContent: "center", mt: 0.5, opacity: 0.6 }}>
         {logos.map((logo, index) => (
-          <Grid item key={logo}>
-            <img
+          <Grid2 key={logo}>
+            <Image
               src={logo}
               alt={`Fake company number ${index + 1}`}
               style={logoStyle}
             />
-          </Grid>
+          </Grid2>
         ))}
-      </Grid>
+      </Grid2>
     </Box>
   );
 }
