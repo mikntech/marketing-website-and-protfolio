@@ -117,7 +117,7 @@ export default function Hero() {
               width: { sm: "100%", md: "80%" },
             }}
           >
-            If you're looking for guidance or need efficient assistance, we
+            If you&apos;re looking for guidance or need efficient assistance, we
             provide expert support to guide you through the process step by
             step, exactly when you need it.
           </Typography>
