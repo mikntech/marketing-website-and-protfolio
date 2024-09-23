@@ -71,22 +71,34 @@ export default function Hero() {
               flexDirection: { xs: "column", sm: "row" },
               alignItems: "center",
               fontSize: "clamp(3rem, 10vw, 3.5rem)",
+              whiteSpace: { xs: "normal", sm: "nowrap" }, // Wrap on small screens, no-wrap on larger
             }}
           >
-            Our&nbsp;latest&nbsp;
+            Dont&nbsp;buy&nbsp;dreams.&nbsp;
             <Typography
               component="span"
               variant="h1"
               sx={(theme) => ({
                 fontSize: "inherit",
                 color: "primary.main",
+                whiteSpace: { xs: "normal", sm: "nowrap" }, // Same here
                 ...theme.applyStyles("dark", {
                   color: "primary.light",
                 }),
               })}
             >
-              products
+              Build them.
             </Typography>
+          </Typography>
+
+          <Typography
+            sx={{
+              textAlign: "center",
+              color: "text.secondary",
+              width: { sm: "100%", md: "80%" },
+            }}
+          >
+            At Mikntech, we don’t sell dreams—we provide the tools to build them
           </Typography>
           <Typography
             sx={{
@@ -95,9 +107,19 @@ export default function Hero() {
               width: { sm: "100%", md: "80%" },
             }}
           >
-            Explore our cutting-edge dashboard, delivering high-quality
-            solutions tailored to your needs. Elevate your experience with
-            top-tier features and services.
+            Our open-source boilerplate code is freely accessible, ready for you
+            to use
+          </Typography>
+          <Typography
+            sx={{
+              textAlign: "center",
+              color: "text.secondary",
+              width: { sm: "100%", md: "80%" },
+            }}
+          >
+            If you're looking for guidance or need efficient assistance, we
+            provide expert support to guide you through the process step by
+            step, exactly when you need it.
           </Typography>
           <Stack
             direction={{ xs: "column", sm: "row" }}

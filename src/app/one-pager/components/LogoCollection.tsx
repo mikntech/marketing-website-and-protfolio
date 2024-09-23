@@ -47,6 +47,8 @@ export default function LogoCollection() {
         {logos.map((logo, index) => (
           <Grid2 key={logo}>
             <Image
+              width={100}
+              height={100}
               src={logo}
               alt={`Fake company number ${index + 1}`}
               style={logoStyle}

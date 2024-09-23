@@ -152,6 +152,8 @@ export default function Testimonials() {
                   subheader={testimonial.occupation}
                 />
                 <Image
+                  width={100}
+                  height={100}
                   src={logos[index]}
                   alt={`Logo ${index + 1}`}
                   style={logoStyle}
