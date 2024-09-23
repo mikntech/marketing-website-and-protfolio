@@ -36,7 +36,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Copy over build artifacts
-COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/.next/static ./.next/static
 
 # Set proper ownership
 RUN chown nextjs:nodejs .next
