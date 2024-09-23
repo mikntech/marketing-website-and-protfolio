@@ -52,5 +52,5 @@ EXPOSE 3000
 
 # Runtime environment variables (you can still override these with docker run flags)
 ENV PORT=3000
-RUN npm i
+
 RUN npm start
