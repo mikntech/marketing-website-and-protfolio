@@ -1,20 +1,11 @@
-import * as React from 'react';
-import { PaletteMode } from '@mui/material/styles';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import PropTypes from "prop-types";
 
-import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
-import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
+import IconButton from "@mui/material/IconButton";
 
-interface ToggleColorModeProps extends IconButtonProps {
-  mode: PaletteMode;
-  toggleColorMode: () => void;
-}
+import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
+import ModeNightRoundedIcon from "@mui/icons-material/ModeNightRounded";
 
-export default function ToggleColorMode({
-  mode,
-  toggleColorMode,
-  ...props
-}: Readonly<ToggleColorModeProps>) {
+function ToggleColorMode({ mode, toggleColorMode, ...props }) {
   return (
     <IconButton
       onClick={toggleColorMode}
@@ -23,7 +14,7 @@ export default function ToggleColorMode({
       size="small"
       {...props}
     >
-      {mode === 'dark' ? (
+      {mode === "dark" ? (
         <WbSunnyRoundedIcon fontSize="small" />
       ) : (
         <ModeNightRoundedIcon fontSize="small" />
@@ -31,3 +22,10 @@ export default function ToggleColorMode({
     </IconButton>
   );
 }
+
+ToggleColorMode.propTypes = {
+  mode: PropTypes.oneOf(["dark", "light"]).isRequired,
+  toggleColorMode: PropTypes.func.isRequired,
+};
+
+export default ToggleColorMode;
