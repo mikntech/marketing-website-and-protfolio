@@ -5,8 +5,7 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Copy necessary files including the .env for build time access
-COPY package.json .env ./
+COPY package.json ./
 
 # Install dependencies
 RUN npm i
