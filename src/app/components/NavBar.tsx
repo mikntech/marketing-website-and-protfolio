@@ -11,7 +11,8 @@ import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Sitemark from "./SitemarkIcon";
-import { useState } from "react";
+import React, { useState } from "react";
+import Link from "next/link";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -27,12 +28,19 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "8px 12px",
 }));
 
-export default function AppAppBar() {
+export default function NavBar() {
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
+
+  const isBrowser = () => typeof window !== "undefined"; //The approach recommended by Next.js
+
+  function scrollToTop() {
+    if (!isBrowser()) return;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
   return (
     <AppBar
@@ -49,25 +57,35 @@ export default function AppAppBar() {
           <Box
             sx={{ flexGrow: 1, display: "flex", alignItems: "center", px: 0 }}
           >
-            <Sitemark />
+            <div onClick={scrollToTop}>
+              <Sitemark />
+            </div>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <Button variant="text" color="info" size="small">
-                Value
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Model
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Story
-              </Button>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                sx={{ minWidth: 0 }}
-              >
-                FAQ
-              </Button>
+              <Link href="#value">
+                <Button variant="text" color="info" size="small">
+                  Value
+                </Button>
+              </Link>
+              <Link href="#model">
+                <Button variant="text" color="info" size="small">
+                  Model
+                </Button>
+              </Link>
+              <Link href="#story">
+                <Button variant="text" color="info" size="small">
+                  Story
+                </Button>
+              </Link>
+              <Link href="#faq">
+                <Button
+                  variant="text"
+                  color="info"
+                  size="small"
+                  sx={{ minWidth: 0 }}
+                >
+                  FAQ
+                </Button>
+              </Link>
             </Box>
           </Box>
           <Box
@@ -77,12 +95,16 @@ export default function AppAppBar() {
               alignItems: "center",
             }}
           >
-            <Button color="primary" variant="text" size="small">
-              @the-libs
-            </Button>
-            <Button color="primary" variant="text" size="small">
-              Contact
-            </Button>
+            <Link href="#thelibs">
+              <Button color="primary" variant="text" size="small">
+                @the-libs
+              </Button>
+            </Link>
+            <Link href="#contact">
+              <Button color="primary" variant="text" size="small">
+                Contact
+              </Button>
+            </Link>
           </Box>
           <Box sx={{ display: { sm: "flex", md: "none" } }}>
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>

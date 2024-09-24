@@ -108,7 +108,7 @@ export default function Hero() {
             }}
           >
             Our open-source boilerplate code is freely accessible, ready for you
-            to use
+            to use [read more]
           </Typography>
           <Typography
             sx={{
@@ -117,9 +117,9 @@ export default function Hero() {
               width: { sm: "100%", md: "80%" },
             }}
           >
-            If you&apos;re looking for guidance or need efficient assistance, we
-            provide expert support to guide you through the process step by
-            step, exactly when you need it.
+            In you are seeking for efficient service, our experts are here to
+            guide you on your journey step by step, depending on your flexible
+            needs and by a unique model that can suit any budget
           </Typography>
           <Stack
             direction={{ xs: "column", sm: "row" }}
@@ -127,34 +127,24 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: "100%", sm: "350px" } }}
           >
-            <InputLabel htmlFor="email-hero" sx={visuallyHidden}>
-              Email
-            </InputLabel>
-            <TextField
-              id="email-hero"
-              hiddenLabel
-              size="small"
+            <Button
               variant="outlined"
-              aria-label="Enter your email address"
-              placeholder="Your email address"
-              fullWidth
-              slotProps={{
-                htmlInput: {
-                  autoComplete: "off",
-                  "aria-label": "Enter your email address",
-                },
-              }}
-            />
+              color="primary"
+              size="small"
+              sx={{ minWidth: "fit-content" }}
+            >
+              Explore @the-libs
+            </Button>
             <Button
               variant="contained"
               color="primary"
               size="small"
               sx={{ minWidth: "fit-content" }}
             >
-              Start now
+              Get MikNTech
             </Button>
           </Stack>
-          <Typography
+          {/*<Typography
             variant="caption"
             color="text.secondary"
             sx={{ textAlign: "center" }}
@@ -164,9 +154,11 @@ export default function Hero() {
               Terms & Conditions
             </Link>
             .
-          </Typography>
+          </Typography>*/}
         </Stack>
+        {/*
         <StyledBox id="image" />
+*/}
       </Container>
     </Box>
   );
