@@ -43,7 +43,7 @@ export default function Page() {
           <Model />
         </div>
         <div id="who">
-          <who />
+          <Who />
         </div>
         <div id="faq">
           <Faq />
