@@ -10,7 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import Sitemark from "./SitemarkIcon";
+import Logo from "./Logo";
 import React, { useState } from "react";
 import Link from "next/link";
 
@@ -28,7 +28,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "8px 12px",
 }));
 
-export default function NavBar() {
+export default function NavBar({ mode }: { mode: string }) {
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -58,7 +58,7 @@ export default function NavBar() {
             sx={{ flexGrow: 1, display: "flex", alignItems: "center", px: 0 }}
           >
             <div onClick={scrollToTop}>
-              <Sitemark />
+              <Logo mode={mode} />
             </div>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <Link href="#value">

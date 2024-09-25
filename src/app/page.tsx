@@ -33,7 +33,7 @@ export default function Page() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline enableColorScheme />
-      <NavBar />
+      <NavBar mode={mode} />
       <Hero />
       <div>
         <div id="value">
