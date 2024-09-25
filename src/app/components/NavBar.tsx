@@ -28,7 +28,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "8px 12px",
 }));
 
-export default ({ mode }: { mode: PaletteMode }) => {
+const NavBar = ({ mode }: { mode: PaletteMode }) => {
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -148,3 +148,5 @@ export default ({ mode }: { mode: PaletteMode }) => {
     </AppBar>
   );
 };
+
+export default NavBar;

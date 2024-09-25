@@ -26,7 +26,7 @@ function Copyright() {
   );
 }
 
-export default ({ mode }: { mode: PaletteMode }) => (
+const Footer = ({ mode }: { mode: PaletteMode }) => (
   <Container
     sx={{
       display: "flex",
@@ -220,3 +220,5 @@ export default ({ mode }: { mode: PaletteMode }) => (
     </Box>
   </Container>
 );
+
+export default Footer;
