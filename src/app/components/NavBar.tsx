@@ -71,9 +71,9 @@ export default function NavBar() {
                   Model
                 </Button>
               </Link>
-              <Link href="#story">
+              <Link href="#who">
                 <Button variant="text" color="info" size="small">
-                  Story
+                  Who
                 </Button>
               </Link>
               <Link href="#faq">

@@ -1,150 +1,120 @@
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
 import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid2";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import AutoFixHighRoundedIcon from "@mui/icons-material/AutoFixHighRounded";
+import ConstructionRoundedIcon from "@mui/icons-material/ConstructionRounded";
+import QueryStatsRoundedIcon from "@mui/icons-material/QueryStatsRounded";
+import SettingsSuggestRoundedIcon from "@mui/icons-material/SettingsSuggestRounded";
+import SupportAgentRoundedIcon from "@mui/icons-material/SupportAgentRounded";
+import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useState } from "react";
+const items = [
+  {
+    icon: <SettingsSuggestRoundedIcon />,
+    title: "Adaptable performance",
+    description:
+      "Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.",
+  },
+  {
+    icon: <ConstructionRoundedIcon />,
+    title: "Built to last",
+    description:
+      "Experience unmatched durability that goes above and beyond with lasting investment.",
+  },
+  {
+    icon: <ThumbUpAltRoundedIcon />,
+    title: "Great user experience",
+    description:
+      "Integrate our product into your routine with an intuitive and easy-to-use interface.",
+  },
+  {
+    icon: <AutoFixHighRoundedIcon />,
+    title: "Innovative functionality",
+    description:
+      "Stay ahead with features that set new standards, addressing your evolving needs better than the rest.",
+  },
+  {
+    icon: <SupportAgentRoundedIcon />,
+    title: "Reliable support",
+    description:
+      "Count on our responsive customer support, offering assistance that goes beyond the purchase.",
+  },
+  {
+    icon: <QueryStatsRoundedIcon />,
+    title: "Precision in every detail",
+    description:
+      "Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.",
+  },
+];
 
-export default function FAQ() {
-  const [expanded, setExpanded] = useState<any>(false);
-
-  const handleChange = (panel: any) => (event: any, isExpanded: any) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-
+export default function Highlights() {
   return (
-    <Container
-      id="faq"
+    <Box
+      id="highlights"
       sx={{
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: { xs: 3, sm: 6 },
+        color: "white",
+        bgcolor: "grey.900",
       }}
     >
-      <Typography
-        component="h2"
-        variant="h4"
+      <Container
         sx={{
-          color: "text.primary",
-          width: { sm: "100%", md: "60%" },
-          textAlign: { sm: "left", md: "center" },
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: { xs: 3, sm: 6 },
         }}
       >
-        Frequently asked questions
-      </Typography>
-      <Box sx={{ width: "100%" }}>
-        <Accordion
-          expanded={expanded === "panel1"}
-          onChange={handleChange("panel1")}
+        <Box
+          sx={{
+            width: { sm: "100%", md: "60%" },
+            textAlign: { sm: "left", md: "center" },
+          }}
         >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1d-content"
-            id="panel1d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              How do I contact customer support if I have a question or issue?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              You can reach our customer support team by emailing
-              <Link> support@email.com </Link>
-              or calling our toll-free number. We&apos;re here to assist you
-              promptly.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel2"}
-          onChange={handleChange("panel2")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2d-content"
-            id="panel2d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              Can I return the product if it doesn&apos;t meet my expectations?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              Absolutely! We offer a hassle-free return policy. If you&apos;re
-              not completely satisfied, you can return the product within
-              [number of days] days for a full refund or exchange.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel3"}
-          onChange={handleChange("panel3")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3d-content"
-            id="panel3d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              What makes your product stand out from others in the market?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              Our product distinguishes itself through its adaptability,
-              durability, and innovative features. We prioritize user
-              satisfaction and continually strive to exceed expectations in
-              every aspect.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel4"}
-          onChange={handleChange("panel4")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel4d-content"
-            id="panel4d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              Is there a warranty on the product, and what does it cover?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              Yes, our product comes with a [length of warranty] warranty. It
-              covers defects in materials and workmanship. If you encounter any
-              issues covered by the warranty, please contact our customer
-              support for assistance.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-      </Box>
-    </Container>
+          <Typography component="h2" variant="h4" gutterBottom>
+            Highlights
+          </Typography>
+          <Typography variant="body1" sx={{ color: "grey.400" }}>
+            Explore why our product stands out: adaptability, durability,
+            user-friendly design, and innovation. Enjoy reliable customer
+            support and precision in every detail.
+          </Typography>
+        </Box>
+        <Grid container spacing={2}>
+          {items.map((item) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item?.title}>
+              <Stack
+                direction="column"
+                component={Card}
+                spacing={1}
+                useFlexGap
+                sx={{
+                  color: "inherit",
+                  p: 3,
+                  height: "100%",
+                  borderColor: "hsla(220, 25%, 25%, 0.3)",
+                  backgroundColor: "grey.800",
+                }}
+              >
+                <Box sx={{ opacity: "50%" }}>{item.icon}</Box>
+                <div>
+                  <Typography gutterBottom sx={{ fontWeight: "medium" }}>
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: "grey.400" }}>
+                    {item.description}
+                  </Typography>
+                </div>
+              </Stack>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 }

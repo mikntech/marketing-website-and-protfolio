@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import Value from "./components/Value";
 import TheLibs from "./components/TheLibs";
 import Model from "./components/Model";
-import Story from "./components/Story";
+import Who from "./components/Who";
 import Contact from "./components/Contact";
 
 export default function Page() {
@@ -42,8 +42,8 @@ export default function Page() {
         <div id="model">
           <Model />
         </div>
-        <div id="story">
-          <Story />
+        <div id="who">
+          <who />
         </div>
         <div id="faq">
           <Faq />

@@ -1,24 +1,66 @@
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import Chip from "@mui/material/Chip";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
+import Divider from "@mui/material/Divider";
+import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useState } from "react";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
-export default function FAQ() {
-  const [expanded, setExpanded] = useState<any>(false);
+const tiers = [
+  {
+    title: "Free",
+    price: "0",
+    description: [
+      "10 users included",
+      "2 GB of storage",
+      "Help center access",
+      "Email support",
+    ],
+    buttonText: "Sign up for free",
+    buttonVariant: "outlined",
+    buttonColor: "primary",
+  },
+  {
+    title: "Professional",
+    subheader: "Recommended",
+    price: "15",
+    description: [
+      "20 users included",
+      "10 GB of storage",
+      "Help center access",
+      "Priority email support",
+      "Dedicated team",
+      "Best deals",
+    ],
+    buttonText: "Start now",
+    buttonVariant: "contained",
+    buttonColor: "secondary",
+  },
+  {
+    title: "Enterprise",
+    price: "30",
+    description: [
+      "50 users included",
+      "30 GB of storage",
+      "Help center access",
+      "Phone & email support",
+    ],
+    buttonText: "Contact us",
+    buttonVariant: "outlined",
+    buttonColor: "primary",
+  },
+];
 
-  const handleChange = (panel: any) => (event: any, isExpanded: any) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-
+export default function Pricing() {
   return (
     <Container
-      id="faq"
+      id="pricing"
       sx={{
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
@@ -29,122 +71,147 @@ export default function FAQ() {
         gap: { xs: 3, sm: 6 },
       }}
     >
-      <Typography
-        component="h2"
-        variant="h4"
+      <Box
         sx={{
-          color: "text.primary",
           width: { sm: "100%", md: "60%" },
           textAlign: { sm: "left", md: "center" },
         }}
       >
-        Frequently asked questions
-      </Typography>
-      <Box sx={{ width: "100%" }}>
-        <Accordion
-          expanded={expanded === "panel1"}
-          onChange={handleChange("panel1")}
+        <Typography
+          component="h2"
+          variant="h4"
+          gutterBottom
+          sx={{ color: "text.primary" }}
         >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1d-content"
-            id="panel1d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              How do I contact customer support if I have a question or issue?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              You can reach our customer support team by emailing
-              <Link> support@email.com </Link>
-              or calling our toll-free number. We&apos;re here to assist you
-              promptly.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel2"}
-          onChange={handleChange("panel2")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2d-content"
-            id="panel2d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              Can I return the product if it doesn&apos;t meet my expectations?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              Absolutely! We offer a hassle-free return policy. If you&apos;re
-              not completely satisfied, you can return the product within
-              [number of days] days for a full refund or exchange.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel3"}
-          onChange={handleChange("panel3")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3d-content"
-            id="panel3d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              What makes your product stand out from others in the market?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              Our product distinguishes itself through its adaptability,
-              durability, and innovative features. We prioritize user
-              satisfaction and continually strive to exceed expectations in
-              every aspect.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel4"}
-          onChange={handleChange("panel4")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel4d-content"
-            id="panel4d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              Is there a warranty on the product, and what does it cover?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              Yes, our product comes with a [length of warranty] warranty. It
-              covers defects in materials and workmanship. If you encounter any
-              issues covered by the warranty, please contact our customer
-              support for assistance.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
+          Pricing
+        </Typography>
+        <Typography variant="body1" sx={{ color: "text.secondary" }}>
+          Quickly build an effective pricing table for your potential customers
+          with this layout. <br />
+          It&apos;s built with default Material UI components with little
+          customization.
+        </Typography>
       </Box>
+      <Grid
+        container
+        spacing={3}
+        sx={{ alignItems: "center", justifyContent: "center", width: "100%" }}
+      >
+        {tiers.map((tier) => (
+          <Grid
+            size={{ xs: 12, sm: tier.title === "Enterprise" ? 12 : 6, md: 4 }}
+            key={tier.title}
+          >
+            <Card
+              sx={[
+                {
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 4,
+                },
+                tier.title === "Professional" &&
+                  ((theme) => ({
+                    border: "none",
+                    background:
+                      "radial-gradient(circle at 50% 0%, hsl(220, 20%, 35%), hsl(220, 30%, 6%))",
+                    boxShadow: `0 8px 12px hsla(220, 20%, 42%, 0.2)`,
+                    ...theme.applyStyles("dark", {
+                      background:
+                        "radial-gradient(circle at 50% 0%, hsl(220, 20%, 20%), hsl(220, 30%, 16%))",
+                      boxShadow: `0 8px 12px hsla(0, 0%, 0%, 0.8)`,
+                    }),
+                  })),
+              ]}
+            >
+              <CardContent>
+                <Box
+                  sx={[
+                    {
+                      mb: 1,
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      gap: 2,
+                    },
+                    tier.title === "Professional"
+                      ? { color: "grey.100" }
+                      : { color: "" },
+                  ]}
+                >
+                  <Typography component="h3" variant="h6">
+                    {tier.title}
+                  </Typography>
+                  {tier.title === "Professional" && (
+                    <Chip icon={<AutoAwesomeIcon />} label={tier.subheader} />
+                  )}
+                </Box>
+                <Box
+                  sx={[
+                    {
+                      display: "flex",
+                      alignItems: "baseline",
+                    },
+                    tier.title === "Professional"
+                      ? { color: "grey.50" }
+                      : { color: null },
+                  ]}
+                >
+                  <Typography component="h3" variant="h2">
+                    ${tier.price}
+                  </Typography>
+                  <Typography component="h3" variant="h6">
+                    &nbsp; per month
+                  </Typography>
+                </Box>
+                <Divider sx={{ my: 2, opacity: 0.8, borderColor: "divider" }} />
+                {tier.description.map((line) => (
+                  <Box
+                    key={line}
+                    sx={{
+                      py: 1,
+                      display: "flex",
+                      gap: 1.5,
+                      alignItems: "center",
+                    }}
+                  >
+                    <CheckCircleRoundedIcon
+                      sx={[
+                        {
+                          width: 20,
+                        },
+                        tier.title === "Professional"
+                          ? { color: "primary.light" }
+                          : { color: "primary.main" },
+                      ]}
+                    />
+                    <Typography
+                      variant="subtitle2"
+                      component={"span"}
+                      sx={[
+                        tier.title === "Professional"
+                          ? { color: "grey.50" }
+                          : { color: null },
+                      ]}
+                    >
+                      {line}
+                    </Typography>
+                  </Box>
+                ))}
+              </CardContent>
+              <CardActions>
+                <Button
+                  fullWidth
+                  variant={tier.buttonVariant as any}
+                  color={tier.buttonColor as any}
+                >
+                  {tier.buttonText}
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 }

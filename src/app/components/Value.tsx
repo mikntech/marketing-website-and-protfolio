@@ -1,149 +1,279 @@
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
+import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import MuiChip from "@mui/material/Chip";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useState } from "react";
+import { styled } from "@mui/material/styles";
 
-export default function FAQ() {
-  const [expanded, setExpanded] = useState<any>(false);
+import DevicesRoundedIcon from "@mui/icons-material/DevicesRounded";
+import EdgesensorHighRoundedIcon from "@mui/icons-material/EdgesensorHighRounded";
+import ViewQuiltRoundedIcon from "@mui/icons-material/ViewQuiltRounded";
+import React, { useState } from "react";
+import Highlights from "@/app/components/Highlights";
+const Boxx: any = Box;
 
-  const handleChange = (panel: any) => (event: any, isExpanded: any) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+const items = [
+  {
+    icon: <ViewQuiltRoundedIcon />,
+    title: "Dashboard",
+    description:
+      "This item could provide a snapshot of the most important metrics or data points related to the product.",
+    imageLight:
+      'url("/static/images/templates/templates-images/dash-light.png")',
+    imageDark: 'url("/static/images/templates/templates-images/dash-dark.png")',
+  },
+  {
+    icon: <EdgesensorHighRoundedIcon />,
+    title: "Mobile integration",
+    description:
+      "This item could provide information about the mobile app version of the product.",
+    imageLight:
+      'url("/static/images/templates/templates-images/mobile-light.png")',
+    imageDark:
+      'url("/static/images/templates/templates-images/mobile-dark.png")',
+  },
+  {
+    icon: <DevicesRoundedIcon />,
+    title: "Available on all platforms",
+    description:
+      "This item could let users know the product is available on all platforms, such as web, mobile, and desktop.",
+    imageLight:
+      'url("/static/images/templates/templates-images/devices-light.png")',
+    imageDark:
+      'url("/static/images/templates/templates-images/devices-dark.png")',
+  },
+];
 
-  return (
-    <Container
-      id="faq"
+const Chip: any = styled(MuiChip)(({ theme }) => ({
+  variants: [
+    {
+      props: ({ selected }: any) => selected,
+      style: {
+        background:
+          "linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))",
+        color: "hsl(0, 0%, 100%)",
+        borderColor: theme.palette.primary.light,
+        "& .MuiChip-label": {
+          color: "hsl(0, 0%, 100%)",
+        },
+        ...theme.applyStyles("dark", {
+          borderColor: theme.palette.primary.dark,
+        }),
+      },
+    },
+  ],
+}));
+
+const MobileLayout = ({
+  selectedItemIndex,
+  handleItemClick,
+  selectedFeature,
+}: any) =>
+  !items[selectedItemIndex] ? null : (
+    <Box
       sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        position: "relative",
-        display: "flex",
+        display: { xs: "flex", sm: "none" },
         flexDirection: "column",
-        alignItems: "center",
-        gap: { xs: 3, sm: 6 },
+        gap: 2,
       }}
     >
-      <Typography
-        component="h2"
-        variant="h4"
+      <Box sx={{ display: "flex", gap: 2, overflow: "auto" }}>
+        {items.map(({ title }, index) => (
+          <Chip
+            size="medium"
+            key={title}
+            label={title}
+            onClick={() => handleItemClick(index)}
+            selected={(selectedItemIndex === index) as any}
+          />
+        ))}
+      </Box>
+      <Card variant="outlined">
+        <Boxx
+          sx={(theme: any) => ({
+            mb: 2,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            minHeight: 280,
+            backgroundImage: "var(--items-imageLight)",
+            ...theme.applyStyles("dark", {
+              backgroundImage: "var(--items-imageDark)",
+            }),
+          })}
+          style={
+            items[selectedItemIndex]
+              ? {
+                  "--items-imageLight": items[selectedItemIndex].imageLight,
+                  "--items-imageDark": items[selectedItemIndex].imageDark,
+                }
+              : {}
+          }
+        />
+        <Box sx={{ px: 2, pb: 2 }}>
+          <Typography
+            gutterBottom
+            sx={{ color: "text.primary", fontWeight: "medium" }}
+          >
+            {selectedFeature.title}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "text.secondary", mb: 1.5 }}>
+            {selectedFeature.description}
+          </Typography>
+        </Box>
+      </Card>
+    </Box>
+  );
+
+MobileLayout.propTypes = {
+  handleItemClick: PropTypes.func.isRequired,
+  selectedFeature: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    icon: PropTypes.element,
+    imageDark: PropTypes.string.isRequired,
+    imageLight: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  selectedItemIndex: PropTypes.number.isRequired,
+};
+
+export { MobileLayout };
+
+export default function Features() {
+  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
+
+  const handleItemClick = (index: number) => {
+    setSelectedItemIndex(index);
+  };
+
+  const selectedFeature = items[selectedItemIndex];
+
+  return (
+    <Container id="features" sx={{ py: { xs: 8, sm: 16 } }}>
+      <Box sx={{ width: { sm: "100%", md: "60%" } }}>
+        <Typography
+          component="h2"
+          variant="h4"
+          gutterBottom
+          sx={{ color: "text.primary" }}
+        >
+          Product features
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: "text.secondary", mb: { xs: 2, sm: 4 } }}
+        >
+          Provide a brief overview of the key features of the product. For
+          example, you could list the number of features, their types or
+          benefits, and add-ons.
+        </Typography>
+      </Box>
+      <Box
         sx={{
-          color: "text.primary",
-          width: { sm: "100%", md: "60%" },
-          textAlign: { sm: "left", md: "center" },
+          display: "flex",
+          flexDirection: { xs: "column", md: "row-reverse" },
+          gap: 2,
         }}
       >
-        Frequently asked questions
-      </Typography>
-      <Box sx={{ width: "100%" }}>
-        <Accordion
-          expanded={expanded === "panel1"}
-          onChange={handleChange("panel1")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1d-content"
-            id="panel1d-header"
+        <div>
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              flexDirection: "column",
+              gap: 2,
+              height: "100%",
+            }}
           >
-            <Typography component="h3" variant="subtitle2">
-              How do I contact customer support if I have a question or issue?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              You can reach our customer support team by emailing
-              <Link> support@email.com </Link>
-              or calling our toll-free number. We&apos;re here to assist you
-              promptly.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel2"}
-          onChange={handleChange("panel2")}
+            {items.map(({ icon, title, description }, index) => (
+              <Box
+                key={title}
+                component={Button}
+                onClick={() => handleItemClick(index)}
+                sx={[
+                  (theme) => ({
+                    p: 2,
+                    height: "100%",
+                    width: "100%",
+                    "&:hover": {
+                      backgroundColor: theme.palette.action.hover,
+                    },
+                  }),
+                  selectedItemIndex === index && {
+                    backgroundColor: "action.selected",
+                  },
+                ]}
+              >
+                <Box
+                  sx={[
+                    {
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "left",
+                      gap: 1,
+                      textAlign: "left",
+                      textTransform: "none",
+                      color: "text.secondary",
+                    },
+                    selectedItemIndex === index && {
+                      color: "text.primary",
+                    },
+                  ]}
+                >
+                  {icon}
+
+                  <Typography variant="h6">{title}</Typography>
+                  <Typography variant="body2">{description}</Typography>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+          <MobileLayout
+            selectedItemIndex={selectedItemIndex}
+            handleItemClick={handleItemClick}
+            selectedFeature={selectedFeature}
+          />
+        </div>
+        <Box
+          sx={{
+            display: { xs: "none", sm: "flex" },
+            width: { xs: "100%", md: "70%" },
+            height: "var(--items-image-height)",
+          }}
         >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2d-content"
-            id="panel2d-header"
+          <Card
+            variant="outlined"
+            sx={{
+              height: "100%",
+              width: "100%",
+              display: { xs: "none", sm: "flex" },
+              pointerEvents: "none",
+            }}
           >
-            <Typography component="h3" variant="subtitle2">
-              Can I return the product if it doesn&apos;t meet my expectations?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              Absolutely! We offer a hassle-free return policy. If you&apos;re
-              not completely satisfied, you can return the product within
-              [number of days] days for a full refund or exchange.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel3"}
-          onChange={handleChange("panel3")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3d-content"
-            id="panel3d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              What makes your product stand out from others in the market?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              Our product distinguishes itself through its adaptability,
-              durability, and innovative features. We prioritize user
-              satisfaction and continually strive to exceed expectations in
-              every aspect.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel4"}
-          onChange={handleChange("panel4")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel4d-content"
-            id="panel4d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              Is there a warranty on the product, and what does it cover?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              Yes, our product comes with a [length of warranty] warranty. It
-              covers defects in materials and workmanship. If you encounter any
-              issues covered by the warranty, please contact our customer
-              support for assistance.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
+            <Boxx
+              sx={(theme: any) => ({
+                m: "auto",
+                width: 420,
+                height: 500,
+                backgroundSize: "contain",
+                backgroundImage: "var(--items-imageLight)",
+                ...theme.applyStyles("dark", {
+                  backgroundImage: "var(--items-imageDark)",
+                }),
+              })}
+              style={
+                items[selectedItemIndex]
+                  ? {
+                      "--items-imageLight": items[selectedItemIndex].imageLight,
+                      "--items-imageDark": items[selectedItemIndex].imageDark,
+                    }
+                  : {}
+              }
+            />
+          </Card>
+        </Box>
       </Box>
     </Container>
   );
