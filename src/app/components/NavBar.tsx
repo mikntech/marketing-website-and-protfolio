@@ -1,4 +1,4 @@
-import { styled, alpha } from "@mui/material/styles";
+import { styled, alpha, PaletteMode } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -28,7 +28,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "8px 12px",
 }));
 
-export default function NavBar({ mode }: { mode: string }) {
+export default ({ mode }: { mode: PaletteMode }) => {
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -147,4 +147,4 @@ export default function NavBar({ mode }: { mode: string }) {
       </Container>
     </AppBar>
   );
-}
+};

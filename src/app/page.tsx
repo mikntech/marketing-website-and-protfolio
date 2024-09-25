@@ -55,7 +55,7 @@ export default function Page() {
           <Contact />
         </div>
         <Divider />
-        <Footer />
+        <Footer mode={mode} />
       </div>
     </ThemeProvider>
   );

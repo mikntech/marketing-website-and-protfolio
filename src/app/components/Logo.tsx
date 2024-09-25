@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { PaletteMode } from "@mui/material/styles";
 
-const Icon = ({ mode }: { mode: string }) =>
+const Icon = ({ mode }: { mode: PaletteMode }) =>
   mode === "dark" ? (
     <Image
       width={100}
