@@ -49,7 +49,7 @@ export default function NavBar() {
         boxShadow: 0,
         bgcolor: "transparent",
         backgroundImage: "none",
-        mt: 10,
+        mt: 2,
       }}
     >
       <Container maxWidth="lg">
@@ -124,20 +124,20 @@ export default function NavBar() {
                   </IconButton>
                 </Box>
                 <Divider sx={{ my: 3 }} />
-                <MenuItem>Features</MenuItem>
-                <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
+                <MenuItem>Value</MenuItem>
+                <MenuItem>Model</MenuItem>
+                <MenuItem>Who</MenuItem>
                 <MenuItem>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem>
+                <MenuItem>@the-libs</MenuItem>
+                <MenuItem>Contact</MenuItem>
                 <MenuItem>
                   <Button color="primary" variant="contained" fullWidth>
-                    Sign up
+                    Get MikNTech
                   </Button>
                 </MenuItem>
                 <MenuItem>
                   <Button color="primary" variant="outlined" fullWidth>
-                    Sign in
+                    Explore @the-libs
                   </Button>
                 </MenuItem>
               </Box>

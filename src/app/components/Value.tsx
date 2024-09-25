@@ -12,7 +12,6 @@ import DevicesRoundedIcon from "@mui/icons-material/DevicesRounded";
 import EdgesensorHighRoundedIcon from "@mui/icons-material/EdgesensorHighRounded";
 import ViewQuiltRoundedIcon from "@mui/icons-material/ViewQuiltRounded";
 import React, { useState } from "react";
-import Highlights from "@/app/components/Highlights";
 const Boxx: any = Box;
 
 const items = [
