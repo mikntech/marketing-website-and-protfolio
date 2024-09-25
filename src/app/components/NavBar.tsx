@@ -57,9 +57,12 @@ const NavBar = ({ mode }: { mode: PaletteMode }) => {
           <Box
             sx={{ flexGrow: 1, display: "flex", alignItems: "center", px: 0 }}
           >
-            <div onClick={scrollToTop}>
+            <Box
+              onClick={scrollToTop}
+              sx={{ display: "flex", alignItems: "center" }}
+            >
               <Logo mode={mode} />
-            </div>
+            </Box>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <Link href="#value">
                 <Button variant="text" color="info" size="small">
