@@ -66,17 +66,12 @@ const NavBar = ({ mode }: { mode: PaletteMode }) => {
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <Link href="#value">
                 <Button variant="text" color="info" size="small">
-                  Value
+                  Value (Why)
                 </Button>
               </Link>
               <Link href="#model">
                 <Button variant="text" color="info" size="small">
-                  Model
-                </Button>
-              </Link>
-              <Link href="#who">
-                <Button variant="text" color="info" size="small">
-                  Who
+                  Model (How)
                 </Button>
               </Link>
               <Link href="#faq">
@@ -89,6 +84,11 @@ const NavBar = ({ mode }: { mode: PaletteMode }) => {
                   FAQ
                 </Button>
               </Link>
+              <Link href="#who">
+                <Button variant="text" color="info" size="small">
+                  Who
+                </Button>
+              </Link>
             </Box>
           </Box>
           <Box
@@ -98,14 +98,14 @@ const NavBar = ({ mode }: { mode: PaletteMode }) => {
               alignItems: "center",
             }}
           >
-            <Link href="#thelibs">
-              <Button color="primary" variant="text" size="small">
-                @the-libs
-              </Button>
-            </Link>
             <Link href="#contact">
               <Button color="primary" variant="text" size="small">
                 Contact
+              </Button>
+            </Link>
+            <Link href="https://github.com/mikntech/the-libs">
+              <Button color="primary" variant="text" size="small">
+                go to @the-libs
               </Button>
             </Link>
           </Box>
@@ -127,10 +127,10 @@ const NavBar = ({ mode }: { mode: PaletteMode }) => {
                   </IconButton>
                 </Box>
                 <Divider sx={{ my: 3 }} />
-                <MenuItem>Value</MenuItem>
-                <MenuItem>Model</MenuItem>
-                <MenuItem>Who</MenuItem>
+                <MenuItem>Value (why)</MenuItem>
+                <MenuItem>Model (how)</MenuItem>
                 <MenuItem>FAQ</MenuItem>
+                <MenuItem>Who</MenuItem>
                 <MenuItem>@the-libs</MenuItem>
                 <MenuItem>Contact</MenuItem>
                 <MenuItem>

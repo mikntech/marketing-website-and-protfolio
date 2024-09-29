@@ -46,7 +46,7 @@ const userTestimonials = [
       "I've tried other similar products, but this one stands out for its innovative features. It's clear that the makers put a lot of thought into creating a solution that truly addresses user needs.",
   },
   {
-    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/6.jpg" />,
+    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/jpg" />,
     name: "Daniel Wolf",
     occupation: "CDO",
     testimonial:

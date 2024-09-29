@@ -9,7 +9,6 @@ import Faq from "./components/FAQ";
 import Footer from "./components/Footer";
 import React, { useEffect, useState } from "react";
 import Value from "./components/Value";
-import TheLibs from "./components/TheLibs";
 import Model from "./components/Model";
 import Who from "./components/Who";
 import Contact from "./components/Contact";
@@ -42,14 +41,11 @@ export default function Page() {
         <div id="model">
           <Model />
         </div>
-        <div id="who">
-          <Who />
-        </div>
         <div id="faq">
           <Faq />
         </div>
-        <div id="thelibs">
-          <TheLibs />
+        <div id="who">
+          <Who />
         </div>
         <div id="contact">
           <Contact />

@@ -1,277 +1,454 @@
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import {
+  Box,
+  CardActions,
+  Container,
+  Grid2,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Card from "@mui/material/Card";
-import MuiChip from "@mui/material/Chip";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import Button from "@mui/material/Button";
+import WorkIcon from "@mui/icons-material/Work";
+import SchoolIcon from "@mui/icons-material/School";
+import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
+import { cloneElement } from "react";
+import { grey } from "@mui/material/colors";
+import CardContent from "@mui/material/CardContent";
 
-import { styled } from "@mui/material/styles";
-
-import DevicesRoundedIcon from "@mui/icons-material/DevicesRounded";
-import EdgesensorHighRoundedIcon from "@mui/icons-material/EdgesensorHighRounded";
-import ViewQuiltRoundedIcon from "@mui/icons-material/ViewQuiltRounded";
-import React, { useState } from "react";
-const Boxx: any = Box;
-
-const items = [
-  {
-    icon: <ViewQuiltRoundedIcon />,
-    title: "Dashboard",
-    description:
-      "This item could provide a snapshot of the most important metrics or data points related to the product.",
-    imageLight:
-      'url("/static/images/templates/templates-images/dash-light.png")',
-    imageDark: 'url("/static/images/templates/templates-images/dash-dark.png")',
-  },
-  {
-    icon: <EdgesensorHighRoundedIcon />,
-    title: "Mobile integration",
-    description:
-      "This item could provide information about the mobile app version of the product.",
-    imageLight:
-      'url("/static/images/templates/templates-images/mobile-light.png")',
-    imageDark:
-      'url("/static/images/templates/templates-images/mobile-dark.png")',
-  },
-  {
-    icon: <DevicesRoundedIcon />,
-    title: "Available on all platforms",
-    description:
-      "This item could let users know the product is available on all platforms, such as web, mobile, and desktop.",
-    imageLight:
-      'url("/static/images/templates/templates-images/devices-light.png")',
-    imageDark:
-      'url("/static/images/templates/templates-images/devices-dark.png")',
-  },
-];
-
-const Chip: any = styled(MuiChip)(({ theme }) => ({
-  variants: [
-    {
-      props: ({ selected }: any) => selected,
-      style: {
-        background:
-          "linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))",
-        color: "hsl(0, 0%, 100%)",
-        borderColor: theme.palette.primary.light,
-        "& .MuiChip-label": {
-          color: "hsl(0, 0%, 100%)",
-        },
-        ...theme.applyStyles("dark", {
-          borderColor: theme.palette.primary.dark,
-        }),
-      },
-    },
-  ],
-}));
-
-const MobileLayout = ({
-  selectedItemIndex,
-  handleItemClick,
-  selectedFeature,
-}: any) =>
-  !items[selectedItemIndex] ? null : (
-    <Box
-      sx={{
-        display: { xs: "flex", sm: "none" },
-        flexDirection: "column",
-        gap: 2,
-      }}
-    >
-      <Box sx={{ display: "flex", gap: 2, overflow: "auto" }}>
-        {items.map(({ title }, index) => (
-          <Chip
-            size="medium"
-            key={title}
-            label={title}
-            onClick={() => handleItemClick(index)}
-            selected={(selectedItemIndex === index) as any}
-          />
-        ))}
-      </Box>
-      <Card variant="outlined">
-        <Boxx
-          sx={(theme: any) => ({
-            mb: 2,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            minHeight: 280,
-            backgroundImage: "var(--items-imageLight)",
-            ...theme.applyStyles("dark", {
-              backgroundImage: "var(--items-imageDark)",
-            }),
-          })}
-          style={
-            items[selectedItemIndex]
-              ? {
-                  "--items-imageLight": items[selectedItemIndex].imageLight,
-                  "--items-imageDark": items[selectedItemIndex].imageDark,
-                }
-              : {}
-          }
-        />
-        <Box sx={{ px: 2, pb: 2 }}>
-          <Typography
-            gutterBottom
-            sx={{ color: "text.primary", fontWeight: "medium" }}
-          >
-            {selectedFeature.title}
-          </Typography>
-          <Typography variant="body2" sx={{ color: "text.secondary", mb: 1.5 }}>
-            {selectedFeature.description}
-          </Typography>
-        </Box>
-      </Card>
-    </Box>
-  );
-
-MobileLayout.propTypes = {
-  handleItemClick: PropTypes.func.isRequired,
-  selectedFeature: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    icon: PropTypes.element,
-    imageDark: PropTypes.string.isRequired,
-    imageLight: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
-  selectedItemIndex: PropTypes.number.isRequired,
-};
-
-export { MobileLayout };
-
-export default function Features() {
-  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
-
-  const handleItemClick = (index: number) => {
-    setSelectedItemIndex(index);
-  };
-
-  const selectedFeature = items[selectedItemIndex];
-
-  return (
-    <Container id="features" sx={{ py: { xs: 8, sm: 16 } }}>
-      <Box sx={{ width: { sm: "100%", md: "60%" } }}>
-        <Typography
-          component="h2"
-          variant="h4"
-          gutterBottom
-          sx={{ color: "text.primary" }}
-        >
-          Product features
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: "text.secondary", mb: { xs: 2, sm: 4 } }}
-        >
-          Provide a brief overview of the key features of the product. For
-          example, you could list the number of features, their types or
-          benefits, and add-ons.
+// CardComponent for Pricing Tiers
+const CardComponent = ({ tier, theme }) => (
+  <Card
+    sx={{
+      p: 2,
+      display: "flex",
+      flexDirection: "column",
+      gap: 4,
+      backgroundColor: theme.palette.mode === "dark" ? grey[900] : grey[100],
+      boxShadow: 3,
+      color: theme.palette.text.primary,
+    }}
+  >
+    <CardContent>
+      <Box
+        sx={{
+          mb: 2,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 1,
+        }}
+      >
+        {cloneElement(tier.icon, {
+          sx: {
+            color:
+              theme.palette.mode === "dark"
+                ? tier.icon.props.sx?.color || "primary.light"
+                : tier.icon.props.sx?.color || "primary.main",
+          },
+        })}
+        <Typography component="h3" variant="h6">
+          {tier.title}
         </Typography>
       </Box>
+
+      <Divider sx={{ my: 1, opacity: 0.8, borderColor: "divider" }} />
+
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row-reverse" },
-          gap: 2,
+          alignItems: "baseline",
+          justifyContent: "center",
         }}
       >
-        <div>
-          <Box
-            sx={{
-              display: { xs: "none", sm: "flex" },
-              flexDirection: "column",
-              gap: 2,
-              height: "100%",
-            }}
-          >
-            {items.map(({ icon, title, description }, index) => (
-              <Box
-                key={title}
-                component={Button}
-                onClick={() => handleItemClick(index)}
-                sx={[
-                  (theme) => ({
-                    p: 2,
-                    height: "100%",
-                    width: "100%",
-                    "&:hover": {
-                      backgroundColor: theme.palette.action.hover,
-                    },
-                  }),
-                  selectedItemIndex === index && {
-                    backgroundColor: "action.selected",
-                  },
-                ]}
-              >
-                <Box
-                  sx={[
-                    {
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "left",
-                      gap: 1,
-                      textAlign: "left",
-                      textTransform: "none",
-                      color: "text.secondary",
-                    },
-                    selectedItemIndex === index && {
-                      color: "text.primary",
-                    },
-                  ]}
-                >
-                  {icon}
-
-                  <Typography variant="h6">{title}</Typography>
-                  <Typography variant="body2">{description}</Typography>
-                </Box>
-              </Box>
-            ))}
-          </Box>
-          <MobileLayout
-            selectedItemIndex={selectedItemIndex}
-            handleItemClick={handleItemClick}
-            selectedFeature={selectedFeature}
-          />
-        </div>
-        <Box
-          sx={{
-            display: { xs: "none", sm: "flex" },
-            width: { xs: "100%", md: "70%" },
-            height: "var(--items-image-height)",
-          }}
+        <Grid2
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          height="100px"
+          marginBottom="-50px"
         >
-          <Card
-            variant="outlined"
-            sx={{
-              height: "100%",
-              width: "100%",
-              display: { xs: "none", sm: "flex" },
-              pointerEvents: "none",
-            }}
+          <Grid2 height="50%">
+            <Typography component="h3" variant="h5">
+              {tier.hours} hours/month:
+            </Typography>
+          </Grid2>
+          <Grid2 height="50%">
+            <Typography component="h3" variant="h4">
+              {tier.price} ₪/h
+            </Typography>
+          </Grid2>
+        </Grid2>
+      </Box>
+    </CardContent>
+
+    <CardActions>
+      <Button fullWidth variant={tier.buttonVariant} color={tier.buttonColor}>
+        {tier.buttonText}
+      </Button>
+    </CardActions>
+  </Card>
+);
+
+// Pricing Tiers Data
+const tiers = [
+  {
+    title: "Consultation",
+    hours: "3-10",
+    price: "599",
+    buttonText: "Get Started",
+    buttonVariant: "outlined",
+    buttonColor: "primary",
+    icon: <WorkIcon />,
+  },
+  {
+    title: "Mentorship",
+    hours: "11-30",
+    price: "499",
+    buttonText: "Get Started",
+    buttonVariant: "outlined",
+    buttonColor: "primary",
+    icon: <SchoolIcon />,
+  },
+  {
+    title: "Mentorship",
+    hours: "31-50",
+    price: "399",
+    buttonText: "Get Started",
+    buttonVariant: "outlined",
+    buttonColor: "primary",
+    icon: <SchoolIcon />,
+  },
+  {
+    title: "Contribution",
+    hours: "51-100",
+    price: "349",
+    buttonText: "Get Started",
+    buttonVariant: "outlined",
+    buttonColor: "primary",
+    icon: <VolunteerActivismIcon />,
+  },
+  {
+    title: "Contribution",
+    hours: "101-150",
+    price: "299",
+    buttonText: "Get Started",
+    buttonVariant: "outlined",
+    buttonColor: "primary",
+    icon: <VolunteerActivismIcon />,
+  },
+];
+
+// Main Pricing Component
+export default function Pricing() {
+  const theme = useTheme();
+
+  return (
+    <Container
+      id="pricing"
+      sx={{
+        pt: { xs: 4, sm: 12 },
+        pb: { xs: 8, sm: 16 },
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: { xs: 3, sm: 6 },
+      }}
+    >
+      {/* Tailored Solutions Section */}
+      <Box
+        sx={{
+          width: { sm: "100%", md: "60%" },
+          textAlign: { sm: "left", md: "center" },
+          mt: 4,
+        }}
+      >
+        <Typography component="h3" variant="h5" gutterBottom>
+          Tailored Solutions for Self-Funded, Pre-Funded, and R&D Projects
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: theme.palette.text.secondary }}
+        >
+          Our service is designed to meet the diverse needs of projects at
+          various stages of funding and development. Whether you are
+          self-funded, pre-funded, or in the early stages of R&D, we offer
+          flexible solutions that maximize value while minimizing costs.
+          Leveraging shared libraries, reusable code, and cost-effective pricing
+          models, we ensure that your project gets exactly what it needs without
+          exceeding your budget.
+          <br />
+          <br />
+          With a focus on pre-built modules and tech stack similarity, we enable
+          faster development and a more predictable project lifecycle. Whether
+          you're managing tight budgets, testing multiple startup ideas, or need
+          a minimal upfront investment, our service ensures you pay only for the
+          hours worked, allowing for maximum flexibility and control.
+          <br />
+          <br />
+          The perfect solution for any low-budget project, especially those that
+          can take advantage of pre-implemented modules and existing technology
+          stacks, our offerings are tailored to ensure you can bring your ideas
+          to market quickly and affordably.
+        </Typography>
+      </Box>
+
+      {/* Your Benefits Section */}
+      <Box
+        sx={{
+          width: { sm: "100%", md: "60%" },
+          textAlign: { sm: "left", md: "center" },
+          mt: 4,
+        }}
+      >
+        <Typography component="h3" variant="h5" gutterBottom>
+          Your Benefits
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: theme.palette.text.secondary }}
+        >
+          When you choose our service, you unlock a variety of benefits tailored
+          to meet your project's needs. Here are some key reasons why our model
+          stands out:
+          <br />
+          <br />
+          <b> Equity-Free Engagement</b>: We operate on an equity-free basis,
+          meaning you retain complete control over your project and ownership
+          unless explicitly arranged otherwise. This model offers flexibility
+          and peace of mind, with the option for lower custom pricing if equity
+          is part of the agreement.
+          <br />
+          <br />
+          <b> Pay Only for Hours, Benefit from Shared Libraries</b>: You only
+          pay for the hours worked, ensuring cost efficiency. Additionally, you
+          benefit from our shared, reusable libraries, which drastically reduce
+          development time and cost by leveraging pre-built modules and
+          solutions.
+          <br />
+          <br />
+          <b> Flexible IP Models</b>: With two distinct Intellectual Property
+          (IP) models, you have the flexibility to choose what best suits your
+          project needs. You can opt for direct control over your codebase or a
+          more collaborative approach where we help manage and maintain the
+          development process.
+          <br />
+          <br />
+          <b> Multiple Pricing Tiers</b>: Our pricing is designed to fit
+          projects of all sizes and budgets, with 5 flexible tiers that adjust
+          based on your specific needs and the scope of work required. This
+          allows you to choose the right level of engagement at a predictable
+          cost.
+          <br />
+          <br />
+          <b> Cost Minimization & Negotiable Pricing</b>: We focus on minimizing
+          your costs by using shared libraries and negotiated pricing models.
+          Our approach is highly customizable, allowing for price negotiation
+          depending on the project scale and specific requirements.
+          <br />
+          <br />
+          <b> Predictable Planning</b>: Hours can be planned and set 1 month in
+          advance, allowing for a clear, predictable workflow. This scheduling
+          flexibility helps you budget effectively and ensures that the work
+          progresses at a steady, reliable pace.
+        </Typography>
+      </Box>
+
+      {/* Case Studies Section */}
+      <Box
+        sx={{
+          width: { sm: "100%", md: "60%" },
+          textAlign: { sm: "left", md: "center" },
+          mt: 6,
+        }}
+      >
+        <Typography component="h3" variant="h5" gutterBottom>
+          Case Studies: Real Projects, Real Solutions
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: theme.palette.text.secondary }}
+        >
+          Discover how our tailored services have helped founders across various
+          industries and stages of development. Each case illustrates our
+          ability to deliver flexible, cost-effective solutions while
+          maintaining high-quality standards.
+        </Typography>
+
+        {/* Case Nick */}
+        <Box mt={4}>
+          <Typography component="h4" variant="h6" gutterBottom>
+            Nick: Real Estate Agent Creating Housing Marketplace
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: theme.palette.text.secondary }}
           >
-            <Boxx
-              sx={(theme: any) => ({
-                m: "auto",
-                width: 420,
-                height: 500,
-                backgroundSize: "contain",
-                backgroundImage: "var(--items-imageLight)",
-                ...theme.applyStyles("dark", {
-                  backgroundImage: "var(--items-imageDark)",
-                }),
-              })}
-              style={
-                items[selectedItemIndex]
-                  ? {
-                      "--items-imageLight": items[selectedItemIndex].imageLight,
-                      "--items-imageDark": items[selectedItemIndex].imageDark,
-                    }
-                  : {}
-              }
-            />
-          </Card>
+            <b>Challenge</b>: Nick aims to create a marketplace where users can
+            directly purchase housing through the platform. He needs real-time
+            customization, chat, and payment processing without exceeding his
+            budget.
+            <br />
+            <b>Solution & Benefits</b>:
+            <br />
+            - Pre-built chat modules and Autodesk/payment integrations
+            drastically reduce development time and costs.
+            <br />
+            - Cost-effective development by paying only for hours worked,
+            allowing Nick to allocate resources efficiently.
+            <br />
+            - Faster time to market, gaining early traction against competitors.
+            <br />
+            - Flexible, part-time development contributions ensure cost control
+            and scalability.
+            <br />
+            <b>Value</b>: Reduced costs, faster launch, and a cutting-edge
+            platform without sacrificing quality or flexibility.
+          </Typography>
+        </Box>
+
+        {/* Case Luke */}
+        <Box mt={4}>
+          <Typography component="h4" variant="h6" gutterBottom>
+            Luke: Cyber Defense Specialist Validating Startup Ideas
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: theme.palette.text.secondary }}
+          >
+            <b>Challenge</b>: Luke has five startup ideas to validate before
+            returning to a full-time job. His main focus is a GraphQL
+            auto-testing tool, but he needs efficient and cost-effective
+            development.
+            <br />
+            <b>Solution & Benefits</b>:
+            <br />
+            - Custom auto-testing logic developed exclusively for Luke while
+            using existing backend modules.
+            <br />
+            - Scalable architecture from the start with Architecture Plus.
+            <br />
+            - Cost-efficient validation via contribution mode, paying only for
+            tailored core logic.
+            <br />
+            - Rapid iteration for multiple ideas within his timeline.
+            <br />
+            <b>Value</b>: Quick, affordable validation with a strong foundation
+            for scalability, ensuring minimal financial risk and maximum
+            opportunity for success.
+          </Typography>
+        </Box>
+
+        {/* Case Roy */}
+        <Box mt={4}>
+          <Typography component="h4" variant="h6" gutterBottom>
+            Roy: Serial Entrepreneur Managing Multiple Ventures
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: theme.palette.text.secondary }}
+          >
+            <b>Challenge</b>: Roy manages multiple ventures but has no budget
+            for one specific project. He needs to build a marketplace without
+            upfront costs, while managing a volunteer team.
+            <br />
+            <b>Solution & Benefits</b>:
+            <br />
+            - Leveraging pre-built marketplace modules like payments to avoid
+            direct development costs.
+            <br />
+            - Roy pays for team management services only, overseeing volunteers
+            without contributing directly to development.
+            <br />
+            - He also pays for recruitment interviews, allowing volunteers to
+            work under the managed team structure.
+            <br />
+            <b>Value</b>: Zero-budget venture management using existing modules
+            and volunteer teams, paying only for management and recruitment
+            services.
+          </Typography>
+        </Box>
+
+        {/* Case Daniel */}
+        <Box mt={4}>
+          <Typography component="h4" variant="h6" gutterBottom>
+            Daniel: Non-Technical Founder Creating AI Couple Therapy App
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: theme.palette.text.secondary }}
+          >
+            <b>Challenge</b>: Daniel, with no tech background, wants to create
+            an AI-based couple therapy app using generative AI and chat modules.
+            <br />
+            <b>Solution & Benefits</b>:
+            <br />
+            - Pre-built chat and generative AI modules, with Daniel focusing on
+            writing prompts.
+            <br />
+            - Minimal tech involvement, requiring only setup, deployment, and
+            simple application creation.
+            <br />
+            - Cost-effective, non-contribution model that keeps development
+            costs low.
+            <br />
+            <b>Value</b>: Daniel launches an AI-driven app without deep tech
+            knowledge, focusing on marketing and prompt creation with minimal
+            setup costs.
+          </Typography>
+        </Box>
+
+        {/* Case Eitan */}
+        <Box mt={4}>
+          <Typography component="h4" variant="h6" gutterBottom>
+            Eitan: Diver Creating a Diving Club Management SaaS
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: theme.palette.text.secondary }}
+          >
+            <b>Challenge</b>: Eitan has built a no-code POC for a diving club
+            management platform. Now, he needs to develop a code-based MVP to
+            scale the product.
+            <br />
+            <b>Solution & Benefits</b>:
+            <br />
+            - Transitioning from no-code POC to a code-based MVP using
+            contribution mode.
+            <br />
+            - Cost-efficient development by paying only for hours worked and
+            leveraging pre-built modules.
+            <br />
+            - A scalable MVP ready to attract more diving clubs and expand the
+            platform.
+            <br />
+            <b>Value</b>: Efficiently evolving from a POC to a scalable MVP with
+            controlled costs and a foundation for future growth.
+          </Typography>
+        </Box>
+
+        {/* Case U */}
+        <Box mt={4}>
+          <Typography component="h4" variant="h6" gutterBottom>
+            Client U: Full Offer for a Fully Designed Mockup
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: theme.palette.text.secondary }}
+          >
+            <b>Challenge</b>: Client U needs a fully designed mockup of their
+            product, ready for implementation.
+            <br />
+            <b>Solution & Benefits</b>:
+            <br />
+            - We offer a complete design package, preparing a fully functional
+            mockup that’s ready for development.
+            <br />
+            <b>Value</b>: A polished, functional design ready for
+            implementation, with no additional design work required.
+          </Typography>
         </Box>
       </Box>
     </Container>
