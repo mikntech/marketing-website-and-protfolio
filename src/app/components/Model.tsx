@@ -250,11 +250,12 @@ export default function Pricing() {
           <br />
           <br />
           Alternatively, the <b>Contribution</b> model offers a more hands-on
-          approach, where all hours are spent directly within the customer's Git
-          workflow. This enables tighter integration with ongoing development
-          efforts. Post-delivery, the work can be further refined and made
-          generic on our time, with the possibility of being open-sourced,
-          subject to specific branding and confidentiality requirements.
+          approach, where all hours are spent directly within the
+          customer&apos;s Git workflow. This enables tighter integration with
+          ongoing development efforts. Post-delivery, the work can be further
+          refined and made generic on our time, with the possibility of being
+          open-sourced, subject to specific branding and confidentiality
+          requirements.
         </Typography>
       </Box>
 
@@ -297,8 +298,8 @@ export default function Pricing() {
           allowing seamless updates without requiring major rewrites.
           <br />
           <b>Blackbox-Oriented Development</b>: Each library functions as a
-          "blackbox" module. Users interact only with the exposed API, ensuring
-          ease of use.
+          &quot;blackbox&quot; module. Users interact only with the exposed API,
+          ensuring ease of use.
           <br />
           <b>Focused on Shared Features</b>: Prioritized by shared, reusable
           components across applications, ensuring efficiency and consistency.

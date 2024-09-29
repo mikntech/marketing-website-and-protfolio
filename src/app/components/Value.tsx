@@ -1,144 +1,4 @@
-import {
-  Box,
-  CardActions,
-  Container,
-  Grid2,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import Card from "@mui/material/Card";
-import Divider from "@mui/material/Divider";
-import Button from "@mui/material/Button";
-import WorkIcon from "@mui/icons-material/Work";
-import SchoolIcon from "@mui/icons-material/School";
-import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
-import { cloneElement } from "react";
-import { grey } from "@mui/material/colors";
-import CardContent from "@mui/material/CardContent";
-
-// CardComponent for Pricing Tiers
-const CardComponent = ({ tier, theme }) => (
-  <Card
-    sx={{
-      p: 2,
-      display: "flex",
-      flexDirection: "column",
-      gap: 4,
-      backgroundColor: theme.palette.mode === "dark" ? grey[900] : grey[100],
-      boxShadow: 3,
-      color: theme.palette.text.primary,
-    }}
-  >
-    <CardContent>
-      <Box
-        sx={{
-          mb: 2,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 1,
-        }}
-      >
-        {cloneElement(tier.icon, {
-          sx: {
-            color:
-              theme.palette.mode === "dark"
-                ? tier.icon.props.sx?.color || "primary.light"
-                : tier.icon.props.sx?.color || "primary.main",
-          },
-        })}
-        <Typography component="h3" variant="h6">
-          {tier.title}
-        </Typography>
-      </Box>
-
-      <Divider sx={{ my: 1, opacity: 0.8, borderColor: "divider" }} />
-
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "baseline",
-          justifyContent: "center",
-        }}
-      >
-        <Grid2
-          container
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          height="100px"
-          marginBottom="-50px"
-        >
-          <Grid2 height="50%">
-            <Typography component="h3" variant="h5">
-              {tier.hours} hours/month:
-            </Typography>
-          </Grid2>
-          <Grid2 height="50%">
-            <Typography component="h3" variant="h4">
-              {tier.price} ₪/h
-            </Typography>
-          </Grid2>
-        </Grid2>
-      </Box>
-    </CardContent>
-
-    <CardActions>
-      <Button fullWidth variant={tier.buttonVariant} color={tier.buttonColor}>
-        {tier.buttonText}
-      </Button>
-    </CardActions>
-  </Card>
-);
-
-// Pricing Tiers Data
-const tiers = [
-  {
-    title: "Consultation",
-    hours: "3-10",
-    price: "599",
-    buttonText: "Get Started",
-    buttonVariant: "outlined",
-    buttonColor: "primary",
-    icon: <WorkIcon />,
-  },
-  {
-    title: "Mentorship",
-    hours: "11-30",
-    price: "499",
-    buttonText: "Get Started",
-    buttonVariant: "outlined",
-    buttonColor: "primary",
-    icon: <SchoolIcon />,
-  },
-  {
-    title: "Mentorship",
-    hours: "31-50",
-    price: "399",
-    buttonText: "Get Started",
-    buttonVariant: "outlined",
-    buttonColor: "primary",
-    icon: <SchoolIcon />,
-  },
-  {
-    title: "Contribution",
-    hours: "51-100",
-    price: "349",
-    buttonText: "Get Started",
-    buttonVariant: "outlined",
-    buttonColor: "primary",
-    icon: <VolunteerActivismIcon />,
-  },
-  {
-    title: "Contribution",
-    hours: "101-150",
-    price: "299",
-    buttonText: "Get Started",
-    buttonVariant: "outlined",
-    buttonColor: "primary",
-    icon: <VolunteerActivismIcon />,
-  },
-];
+import { Box, Container, Typography, useTheme } from "@mui/material";
 
 // Main Pricing Component
 export default function Pricing() {
@@ -183,9 +43,9 @@ export default function Pricing() {
           <br />
           With a focus on pre-built modules and tech stack similarity, we enable
           faster development and a more predictable project lifecycle. Whether
-          you're managing tight budgets, testing multiple startup ideas, or need
-          a minimal upfront investment, our service ensures you pay only for the
-          hours worked, allowing for maximum flexibility and control.
+          you&apos;re managing tight budgets, testing multiple startup ideas, or
+          need a minimal upfront investment, our service ensures you pay only
+          for the hours worked, allowing for maximum flexibility and control.
           <br />
           <br />
           The perfect solution for any low-budget project, especially those that
@@ -211,8 +71,8 @@ export default function Pricing() {
           sx={{ color: theme.palette.text.secondary }}
         >
           When you choose our service, you unlock a variety of benefits tailored
-          to meet your project's needs. Here are some key reasons why our model
-          stands out:
+          to meet your project&apos;s needs. Here are some key reasons why our
+          model stands out:
           <br />
           <br />
           <b> Equity-Free Engagement</b>: We operate on an equity-free basis,
