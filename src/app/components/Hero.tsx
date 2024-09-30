@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Grid2, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -42,7 +42,7 @@ export default function Hero() {
               whiteSpace: { xs: "normal", sm: "nowrap" }, // Wrap on small screens, no-wrap on larger
             }}
           >
-            Dont&nbsp;buy&nbsp;dreams.&nbsp;
+            Don’t&nbsp;buy&nbsp;dreams.&nbsp;
             <Typography
               component="span"
               variant="h1"
@@ -65,30 +65,36 @@ export default function Hero() {
               color: "text.secondary",
               width: { sm: "100%", md: "80%" },
             }}
+            variant="h6"
           >
-            At Mikntech, we don’t sell dreams—we provide the tools to build them
+            We don’t sell dreams—we provide the tools to build them!
           </Typography>
-          <Typography
-            sx={{
-              textAlign: "center",
-              color: "text.secondary",
-              width: { sm: "100%", md: "80%" },
-            }}
-          >
-            Our open-source boilerplate code is freely accessible, ready for you
-            to use [read more]
-          </Typography>
-          <Typography
-            sx={{
-              textAlign: "center",
-              color: "text.secondary",
-              width: { sm: "100%", md: "80%" },
-            }}
-          >
-            In you are seeking for efficient service, our experts are here to
-            guide you on your journey step by step, depending on your flexible
-            needs and by a unique model that can suit any budget
-          </Typography>
+          <Grid2 container direction="column" rowSpacing={2}>
+            <Grid2 width="100%">
+              <Box sx={{ boxShadow: 3, p: 3, borderRadius: 2 }}>
+                <Typography variant="h6" textAlign="center">
+                  @the-libs
+                </Typography>
+                <Typography textAlign="center">
+                  Our open-source boilerplate code is freely accessible, ready
+                  for you to use.
+                </Typography>
+              </Box>
+            </Grid2>
+            <Grid2 width="100%">
+              <Box sx={{ boxShadow: 3, p: 3, borderRadius: 2 }}>
+                <Typography variant="h6" textAlign="center">
+                  MikNTech
+                </Typography>
+                <Typography textAlign="center">
+                  If you are seeking efficient service, our experts are here to
+                  guide you step by step, offering flexible, budget-friendly
+                  solutions.
+                </Typography>
+              </Box>
+            </Grid2>
+          </Grid2>
+
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={1}
@@ -109,7 +115,7 @@ export default function Hero() {
               size="small"
               sx={{ minWidth: "fit-content" }}
             >
-              Get MikNTech
+              Learn More About MikNTech
             </Button>
           </Stack>
         </Stack>
