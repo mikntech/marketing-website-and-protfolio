@@ -1,192 +1,86 @@
-import {
-  Box,
-  Container,
-  Grid,
-  Typography,
-  Link,
-  Card,
-  CardContent,
-} from "@mui/material";
+import { Box, Container, Grid, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import Button from "@mui/material/Button";
 
-export default function Home() {
+const Contact = () => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+
   return (
-    <Container maxWidth="lg">
-      {/* Contact Information */}
-      <Box sx={{ mt: 4, mb: 2 }}>
-        <Typography variant="h4">Michael Nusair</Typography>
-        <Typography variant="h6">
-          Full-Stack Developer & Entrepreneur
-        </Typography>
-        <Typography>
-          <Link href="mailto:MNPCMW6444@gmail.com">MNPCMW6444@gmail.com</Link> |
-          <Link href="https://linkedin.com/in/michael-nx" target="_blank">
-            {" "}
-            LinkedIn
-          </Link>
-        </Typography>
-        <Typography variant="body2">Email: michael@miknteh.com</Typography>
-      </Box>
-
-      {/* Experience Section */}
+    <Container>
       <Box sx={{ mt: 4 }}>
-        <Typography variant="h5">Experience</Typography>
+        <Typography variant="h5">Contact Me</Typography>
 
-        <Card sx={{ mb: 2 }}>
-          <CardContent>
-            <Typography variant="h6">
-              IAF - Full-Stack Web Developer (2022-2024)
-            </Typography>
-            <Typography variant="body1">
-              Developed a real-time aerial picture and air defense control
-              system at Ofek 324 Unit. The system is a Web UI based on more than
-              30 microservices, using Cesium, DeckGL, AngularJS → React, and
-              Redux. I was responsible for implementing a new feature requiring
-              4 new services and full integration with UX specifications.
-            </Typography>
-          </CardContent>
-        </Card>
+        <form
+          action="https://formsubmit.co/michael@mikntech.com" // Replace with your email address
+          method="POST"
+        >
+          <Grid container spacing={2}>
+            {/* Name Field */}
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Name"
+                variant="outlined"
+                name="name" // This is important for FormSubmit to capture the field
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </Grid>
 
-        <Card sx={{ mb: 2 }}>
-          <CardContent>
-            <Typography variant="h6">IAF - Product Manager (2021)</Typography>
-            <Typography variant="body1">
-              Managed the development and integration process for new systems in
-              the air control division, representing hundreds of operational
-              users while driving the product forward.
-            </Typography>
-          </CardContent>
-        </Card>
-      </Box>
+            {/* Email Field */}
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Email"
+                variant="outlined"
+                name="email" // Name attribute for FormSubmit
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Grid>
 
-      {/* Ventures Section */}
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5">My Ventures</Typography>
+            {/* Message Field */}
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Message (Optional)"
+                variant="outlined"
+                multiline
+                rows={4}
+                name="message" // Name attribute for FormSubmit
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </Grid>
 
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">CubeBox</Typography>
-                <Typography variant="body2">
-                  Transforms the home buying journey into an engaging and
-                  personalized experience using Node, Express, and React.
-                </Typography>
-                <Link href="https://cubebox.co.il" target="_blank">
-                  cubebox.co.il
-                </Link>
-              </CardContent>
-            </Card>
+            {/* Submit Button */}
+            <Grid item xs={12}>
+              <Button variant="contained" color="primary" type="submit">
+                Submit
+              </Button>
+            </Grid>
           </Grid>
+        </form>
 
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Offisito</Typography>
-                <Typography variant="body2">
-                  A marketplace for office subleasing with UIs for guests,
-                  hosts, and admins, built using Nx monorepo, ECS, S3, and
-                  MongoDB.
-                </Typography>
-                <Link href="https://offisito.com" target="_blank">
-                  offisito.com
-                </Link>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">CoupleLink</Typography>
-                <Typography variant="body2">
-                  Controlled chat for couples with an AI bot as the middleman
-                  for therapy use, implemented using OpenAI, GraphQL, and
-                  MongoDB.
-                </Typography>
-                <Link href="https://couple-link.com/lp" target="_blank">
-                  couple-link.com/lp
-                </Link>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">
-                  Failean/Scailean - AI Accelerator
-                </Typography>
-                <Typography variant="body2">
-                  Web apps for startup acceleration and business plan generation
-                  using AI, with Express, GraphQL, and custom analytics,
-                  deployed on AWS and Azure.
-                </Typography>
-                <Link href="https://t.ly/d-8BY" target="_blank">
-                  failean
-                </Link>{" "}
-                /{" "}
-                <Link href="https://t.ly/iDNwf" target="_blank">
-                  scailean
-                </Link>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Neurobica</Typography>
-                <Typography variant="body2">
-                  Developed proof of concept for neurotech startup using the
-                  MERN stack and BrainJS for ML, managing the R&D team for MVP
-                  development.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Box>
-
-      {/* Skills Section */}
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5">Skills</Typography>
-        <Typography variant="body1">
-          React, MUI, NodeJS, ExpressJS, GraphQL, TypeScript, Nx (monorepo),
-          Redux, RxJS, SSE, WebSocket, MongoDB, Redis, PubSub, Bull, Docker,
-          AWS, Azure, GCP, Geocoding, Python, Selenium, and more.
-        </Typography>
-      </Box>
-
-      {/* Languages Section */}
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5">Languages</Typography>
-        <Typography variant="body1">English - Native</Typography>
-        <Typography variant="body1">Hebrew - Native</Typography>
-      </Box>
-
-      {/* Education Section */}
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5">Education</Typography>
-        <Typography variant="body1">
-          Open University: Computer Science B.Sc (50% completed)
-        </Typography>
-        <Typography variant="body1">
-          See-Security College: Cybersecurity Intro and Network Administration,
-          SOC Tier 1 Certified
-        </Typography>
-        <Typography variant="body1">LPI: Linux Essentials Certified</Typography>
-      </Box>
-
-      {/* About Me Section */}
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5">About Me</Typography>
-        <Typography variant="body1">
-          I am a problem solver, full-stack developer, and entrepreneur. Open to
-          hands-on roles or leadership positions in web, security research, ML,
-          or Web3. I started as a product manager before transitioning into
-          development, training through IAF and independent learning.
-        </Typography>
+        {/* Optional: Calendly Link */}
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h6">Schedule a Meeting</Typography>
+          <a
+            href="https://calendly.com/your-calendly-username" // Replace with your Calendly link
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book a time with me on Calendly
+          </a>
+        </Box>
       </Box>
     </Container>
   );
-}
+};
+
+export default Contact;

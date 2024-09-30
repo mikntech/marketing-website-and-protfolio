@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid2";
 import { useTheme } from "@mui/system";
 import Image from "next/image";
+import CV from "./CV";
 
 const userTestimonials = [
   {
@@ -82,87 +83,91 @@ export default function Testimonials() {
   const logos = theme.palette.mode === "light" ? darkLogos : whiteLogos;
 
   return (
-    <Container
-      id="testimonials"
-      sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: { xs: 3, sm: 6 },
-      }}
-    >
-      <Box
+    <>
+      <Container
+        id="testimonials"
         sx={{
-          width: { sm: "100%", md: "60%" },
-          textAlign: { sm: "left", md: "center" },
+          pt: { xs: 4, sm: 12 },
+          pb: { xs: 8, sm: 16 },
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: { xs: 3, sm: 6 },
         }}
       >
-        <Typography
-          component="h2"
-          variant="h4"
-          gutterBottom
-          sx={{ color: "text.primary" }}
+        <Box
+          sx={{
+            width: { sm: "100%", md: "60%" },
+            textAlign: { sm: "left", md: "center" },
+          }}
         >
-          Testimonials
-        </Typography>
-        <Typography variant="body1" sx={{ color: "text.secondary" }}>
-          See what our customers love about our products. Discover how we excel
-          in efficiency, durability, and satisfaction. Join us for quality,
-          innovation, and reliable support.
-        </Typography>
-      </Box>
-      <Grid container spacing={2}>
-        {userTestimonials.map((testimonial: any, index: number) => (
-          <Grid
-            size={{ xs: 12, sm: 6, md: 4 }}
-            key={testimonial?.title}
-            sx={{ display: "flex" }}
+          <Typography
+            component="h2"
+            variant="h4"
+            gutterBottom
+            sx={{ color: "text.primary" }}
           >
-            <Card
-              variant="outlined"
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                flexGrow: 1,
-              }}
+            Testimonials
+          </Typography>
+          <Typography variant="body1" sx={{ color: "text.secondary" }}>
+            See what our customers love about our products. Discover how we
+            excel in efficiency, durability, and satisfaction. Join us for
+            quality, innovation, and reliable support.
+          </Typography>
+        </Box>
+        <Grid container spacing={2}>
+          {userTestimonials.map((testimonial: any, index: number) => (
+            <Grid
+              size={{ xs: 12, sm: 6, md: 4 }}
+              key={testimonial?.title}
+              sx={{ display: "flex" }}
             >
-              <CardContent>
-                <Typography
-                  variant="body1"
-                  gutterBottom
-                  sx={{ color: "text.secondary" }}
-                >
-                  {testimonial.testimonial}
-                </Typography>
-              </CardContent>
-              <Box
+              <Card
+                variant="outlined"
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: "column",
                   justifyContent: "space-between",
+                  flexGrow: 1,
                 }}
               >
-                <CardHeader
-                  avatar={testimonial.avatar}
-                  title={testimonial.name}
-                  subheader={testimonial.occupation}
-                />
-                <Image
-                  width={100}
-                  height={100}
-                  src={logos[index]}
-                  alt={`Logo ${index + 1}`}
-                  style={logoStyle}
-                />
-              </Box>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+                <CardContent>
+                  <Typography
+                    variant="body1"
+                    gutterBottom
+                    sx={{ color: "text.secondary" }}
+                  >
+                    {testimonial.testimonial}
+                  </Typography>
+                </CardContent>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <CardHeader
+                    avatar={testimonial.avatar}
+                    title={testimonial.name}
+                    subheader={testimonial.occupation}
+                  />
+                  <Image
+                    width={100}
+                    height={100}
+                    src={logos[index]}
+                    alt={`Logo ${index + 1}`}
+                    style={logoStyle}
+                  />
+                </Box>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      <CV />
+    </>
   );
 }
